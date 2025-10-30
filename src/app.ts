@@ -16,7 +16,7 @@ app.use(
   cors({
     origin: [
       "http://localhost:5173", // for local development
-      "https://bookit-frontend.vercel.app", // your frontend live domain (update if needed)
+      "https://book-it-frontend-lemon.vercel.app/", // your frontend live domain (update if needed)
     ],
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true,
