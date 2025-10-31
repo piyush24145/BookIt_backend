@@ -1,7 +1,6 @@
 import express, { Application } from "express";
 import cors from "cors";
 import dotenv from "dotenv";
-
 import testRoutes from "./routes/testRoutes";
 import experienceRoutes from "./routes/experience.routes";
 import bookingRoutes from "./routes/booking.routes";
@@ -11,21 +10,21 @@ dotenv.config();
 
 const app: Application = express();
 
-// ✅ Proper CORS setup
+const allowedOrigins = [
+  "http://localhost:5173",
+  "https://bookit-frontend-lemon.vercel.app",
+];
+
 app.use(
   cors({
-    origin: [
-      "http://localhost:5173", // for local development
-      "https://book-it-frontend-lemon.vercel.app/", // your frontend live domain (update if needed)
-    ],
+    origin: allowedOrigins,
     methods: ["GET", "POST", "PUT", "DELETE"],
-    credentials: true,
+    allowedHeaders: ["Content-Type", "Authorization"],
   })
 );
 
 app.use(express.json());
 
-// ✅ API routes
 app.use("/api", testRoutes);
 app.use("/api/experiences", experienceRoutes);
 app.use("/api/bookings", bookingRoutes);
