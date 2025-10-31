@@ -34,7 +34,7 @@ app.use(
 );
 
 // ✅ Handle preflight requests globally
-app.options("*", cors());
+app.options(/.*/, cors());
 
 // ✅ Body parser
 app.use(express.json());
