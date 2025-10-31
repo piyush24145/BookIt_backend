@@ -16,22 +16,27 @@ const allowedOrigins = [
   "https://bookit-frontend-lemon.vercel.app",
 ];
 
-// CORS setup
+// ✅ CORS setup (Render-friendly)
 app.use(
   cors({
-    origin: function (origin, callback) {
+    origin: (origin, callback) => {
+      // Allow requests with no origin (like mobile apps, curl, etc.)
       if (!origin || allowedOrigins.includes(origin)) {
         callback(null, true);
       } else {
-        console.warn("Blocked by CORS:", origin);
+        console.warn("❌ Blocked by CORS:", origin);
         callback(new Error("Not allowed by CORS"));
       }
     },
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     allowedHeaders: ["Content-Type", "Authorization"],
     credentials: true,
+    optionsSuccessStatus: 200, // 👈 Important for Render + Safari
   })
 );
+
+// ✅ Handle preflight OPTIONS requests globally
+app.options("*", cors());
 
 // Body parser
 app.use(express.json());
