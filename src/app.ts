@@ -13,7 +13,7 @@ const app: Application = express();
 // Allowed origins
 const allowedOrigins = [
   "http://localhost:5173",
-  "https://bookit-frontend-lemon.vercel.app",
+  "https://book-it-frontend-lemon.vercel.app/",
 ];
 
 // ✅ CORS setup (Render-friendly)
