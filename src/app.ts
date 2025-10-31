@@ -26,7 +26,7 @@ app.use(
 );
 
 // ✅ Handle preflight (for safety)
-app.options("*", cors());
+app.options(/.*/, cors());
 app.use(express.json());
 
 // ✅ Routes
